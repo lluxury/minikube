@@ -20,10 +20,10 @@ VERSION ?= v$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)
 DEB_VERSION ?= $(VERSION_MAJOR).$(VERSION_MINOR)-$(VERSION_BUILD)
 INSTALL_SIZE ?= $(shell du out/minikube-windows-amd64.exe | cut -f1)
 BUILDROOT_BRANCH ?= 2017.02
-REGISTRY?=gcr.io/k8s-minikube
+REGISTRY?=registry.cn-hangzhou.aliyuncs.com/google_containers
 
 HYPERKIT_BUILD_IMAGE 	?= karalabe/xgo-1.8.3
-BUILD_IMAGE 	?= gcr.io/google_containers/kube-cross:v1.9.1-1
+BUILD_IMAGE 	?= registry.cn-hangzhou.aliyuncs.com/google_containers/kube-cross:v1.9.1-1
 ISO_BUILD_IMAGE ?= $(REGISTRY)/buildroot-image
 
 ISO_VERSION ?= v0.23.6
@@ -157,9 +157,9 @@ drivers: out/docker-machine-driver-hyperkit out/docker-machine-driver-kvm2
 
 .PHONY: images
 images: localkube-image localkube-dind-image localkube-dind-image-devshell
-	gcloud docker -- push gcr.io/k8s-minikube/localkube-image:$(TAG)
-	gcloud docker -- push gcr.io/k8s-minikube/localkube-dind-image:$(TAG)
-	gcloud docker -- push gcr.io/k8s-minikube/localkube-dind-image-devshell:$(TAG)
+	gcloud docker -- push registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-image:$(TAG)
+	gcloud docker -- push registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image:$(TAG)
+	gcloud docker -- push registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image-devshell:$(TAG)
 
 .PHONY: integration
 integration: out/minikube

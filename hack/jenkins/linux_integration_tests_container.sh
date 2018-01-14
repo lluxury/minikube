@@ -29,7 +29,7 @@ set -e
 result=0
 JOB_NAME="Linux-Container"
 
-CID="$(docker run -d -p 127.0.0.1:4321:4321 --privileged gcr.io/k8s-minikube/localkube-dind-image-devshell:$COMMIT /start.sh)"
+CID="$(docker run -d -p 127.0.0.1:4321:4321 --privileged registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image-devshell:$COMMIT /start.sh)"
 
 kubectl config set-cluster minikube --server=http://127.0.0.1:4321
 kubectl config set-context minikube --cluster=minikube
