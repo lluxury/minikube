@@ -97,14 +97,14 @@ const (
 	DefaultAddonListFormat     = "- {{.AddonName}}: {{.AddonStatus}}\n"
 	DefaultConfigViewFormat    = "- {{.ConfigKey}}: {{.ConfigValue}}\n"
 	DefaultCacheListFormat     = "{{.CacheImage}}\n"
-	GithubMinikubeReleasesURL  = "https://storage.googleapis.com/minikube/releases.json"
-	KubernetesVersionGCSURL    = "https://storage.googleapis.com/minikube/k8s_releases.json"
+	GithubMinikubeReleasesURL  = "https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/releases.json"
+	KubernetesVersionGCSURL    = "https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/k8s_releases.json"
 	DefaultWait                = 20
 	DefaultInterval            = 6
 	DefaultClusterBootstrapper = "localkube"
 )
 
-var DefaultIsoUrl = fmt.Sprintf("https://storage.googleapis.com/%s/minikube-%s.iso", minikubeVersion.GetIsoPath(), minikubeVersion.GetIsoVersion())
+var DefaultIsoUrl = fmt.Sprintf("https://kubernetes.oss-cn-hangzhou.aliyuncs.com/%s/minikube-%s.iso", minikubeVersion.GetIsoPath(), minikubeVersion.GetIsoVersion())
 var DefaultIsoShaUrl = DefaultIsoUrl + ShaSuffix
 
 var DefaultKubernetesVersion = version.Get().GitVersion
@@ -117,7 +117,7 @@ func GetProfileFile(profile string) string {
 	return filepath.Join(GetMinipath(), "profiles", profile, "config.json")
 }
 
-var LocalkubeDownloadURLPrefix = "https://storage.googleapis.com/minikube/k8sReleases/"
+var LocalkubeDownloadURLPrefix = "https://code.aliyun.com/khs1994-docker/minikube/raw/"
 var LocalkubeLinuxFilename = "localkube-linux-amd64"
 
 // DockerAPIVersion is the API version implemented by Docker running in the minikube VM.
@@ -155,7 +155,7 @@ const (
 )
 
 func GetKubernetesReleaseURL(binaryName, version string) string {
-	return fmt.Sprintf("https://storage.googleapis.com/kubernetes-release/release/%s/bin/linux/amd64/%s", version, binaryName)
+	return fmt.Sprintf("https://kubernetes.oss-cn-hangzhou.aliyuncs.com/kubernetes-release/release/%s/bin/linux/amd64/%s", version, binaryName)
 }
 
 func GetKubernetesReleaseURLSha1(binaryName, version string) string {
@@ -176,13 +176,13 @@ var LocalkubeCachedImages = []string{
 	"k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.5",
 
 	// Addon Manager
-	"gcr.io/google-containers/kube-addon-manager:v6.5",
+	"registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager:v6.5",
 
 	// Pause
 	"k8s.gcr.io/pause-amd64:3.0",
 
 	//Storage Provisioner
-	"gcr.io/k8s-minikube/storage-provisioner:v1.8.0",
+	"registry.cn-hangzhou.aliyuncs.com/google_containers/storage-provisioner:v1.8.0",
 }
 
 func GetKubeadmCachedImages(version string) []string {
@@ -191,7 +191,7 @@ func GetKubeadmCachedImages(version string) []string {
 		"k8s.gcr.io/kubernetes-dashboard-amd64:v1.8.1",
 
 		// Addon Manager
-		"gcr.io/google-containers/kube-addon-manager:v6.5",
+		"registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager:v6.5",
 
 		// Pause
 		"k8s.gcr.io/pause-amd64:3.0",
@@ -210,7 +210,7 @@ func GetKubeadmCachedImages(version string) []string {
 		"k8s.gcr.io/kube-apiserver-amd64:" + version,
 
 		//Storage Provisioner
-		"gcr.io/k8s-minikube/storage-provisioner:v1.8.0",
+		"registry.cn-hangzhou.aliyuncs.com/google_containers/storage-provisioner:v1.8.0",
 	}
 }
 
