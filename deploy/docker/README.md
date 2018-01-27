@@ -5,7 +5,7 @@
 #### How to build
 From root minikube/ directory run:
 ```console
-$ make localkube-image #optional env-vars: TAG=LOCALKUBE_VERSION REGISTRY=gcr.io/k8s-minikube
+$ make localkube-image #optional env-vars: TAG=LOCALKUBE_VERSION REGISTRY=registry.cn-hangzhou.aliyuncs.com/google_containers
 ```
 
 #### How to run
@@ -21,7 +21,7 @@ $ docker run -d \
     --net=host \
     --pid=host \
     --privileged \
-    gcr.io/k8s-minikube/localkube-image:${LOCALKUBE_VERSION:-v1.5.3} \
+    registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-image:${LOCALKUBE_VERSION:-v1.5.3} \
     /localkube start \
     --apiserver-insecure-address=0.0.0.0 \
     --apiserver-insecure-port=8080 \
@@ -32,7 +32,7 @@ $ docker run -d \
 ##### Docker for Mac/Windows
 ```console
 # Fix mounting, need to run every time Docker VM boots
-$ docker run --rm --volume=/:/rootfs:rw --pid=host --privileged gcr.io/k8s-minikube/localkube-image:${LOCALKUBE_VERSION:-v1.5.3} nsenter --mount=/proc/1/ns/mnt sh -c "if ! df | grep /var/lib/kubelet > /dev/null; then mkdir -p /var/lib/kubelet && mount --bind /var/lib/kubelet /var/lib/kubelet && mount --make-shared /var/lib/kubelet; fi"
+$ docker run --rm --volume=/:/rootfs:rw --pid=host --privileged registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-image:${LOCALKUBE_VERSION:-v1.5.3} nsenter --mount=/proc/1/ns/mnt sh -c "if ! df | grep /var/lib/kubelet > /dev/null; then mkdir -p /var/lib/kubelet && mount --bind /var/lib/kubelet /var/lib/kubelet && mount --make-shared /var/lib/kubelet; fi"
 $ docker run -d \
     --volume=/sys:/sys:ro \
     --volume=/var/lib/docker:/var/lib/docker:rw \
@@ -45,7 +45,7 @@ $ docker run -d \
     --net=host \
     --pid=host \
     --privileged \
-    gcr.io/k8s-minikube/localkube-amd64:${LOCALKUBE_VERSION:-v1.5.3} \
+    registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-amd64:${LOCALKUBE_VERSION:-v1.5.3} \
     /localkube start \
     --apiserver-insecure-address=127.0.0.1 \
     --apiserver-insecure-port=8000 \
@@ -72,7 +72,7 @@ spec:
   hostNetwork: true
   containers:
   - name: kube-addon-manager
-    image: gcr.io/google-containers/kube-addon-manager:v6.5
+    image: registry.cn-hangzhou.aliyuncs.com/google_containers/kube-addon-manager:v6.5
     imagePullPolicy: IfNotPresent
     resources:
       requests:

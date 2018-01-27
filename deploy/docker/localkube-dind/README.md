@@ -5,7 +5,7 @@
 #### How to build
 From root minikube/ directory run:
 ```console
-$ make localkube-dind-image #optional env-vars: TAG=LOCALKUBE_VERSION REGISTRY=gcr.io/k8s-minikube
+$ make localkube-dind-image #optional env-vars: TAG=LOCALKUBE_VERSION REGISTRY=registry.cn-hangzhou.aliyuncs.com/google_containers
 ```
 
 #### How to run
@@ -17,7 +17,7 @@ $ docker run -it \
   -p 127.0.0.1:8080:8080 \
   -v /boot:/boot \
   -v /lib/modules:/lib/modules \
-  gcr.io/k8s-minikube/localkube-dind-image:v1.7.0 \
+  registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image:v1.7.0 \
   /start.sh
 ```
 

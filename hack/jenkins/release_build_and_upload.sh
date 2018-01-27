@@ -45,11 +45,11 @@ gsutil -m cp out/* gs://$BUCKET/releases/$TAGNAME/
 gsutil cp -r gs://$BUCKET/releases/$TAGNAME/* gs://$BUCKET/releases/latest/
 
 # Upload localkube containers
-TAG="$(docker images "gcr.io/k8s-minikube/localkube-image" --format="{{.Tag}}" | head -n 1)"
-gcloud docker -- push gcr.io/k8s-minikube/localkube-image:$TAG
+TAG="$(docker images "registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-image" --format="{{.Tag}}" | head -n 1)"
+gcloud docker -- push registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-image:$TAG
 
-TAG="$(docker images "gcr.io/k8s-minikube/localkube-dind-image" --format="{{.Tag}}" | head -n 1)"
-gcloud docker -- push gcr.io/k8s-minikube/localkube-dind-image:$TAG
+TAG="$(docker images "registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image" --format="{{.Tag}}" | head -n 1)"
+gcloud docker -- push registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image:$TAG
 
-TAG="$(docker images "gcr.io/k8s-minikube/localkube-dind-image-devshell" --format="{{.Tag}}" | head -n 1)"
-gcloud docker -- push gcr.io/k8s-minikube/localkube-dind-image-devshell:$TAG
+TAG="$(docker images "registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image-devshell" --format="{{.Tag}}" | head -n 1)"
+gcloud docker -- push registry.cn-hangzhou.aliyuncs.com/google_containers/localkube-dind-image-devshell:$TAG

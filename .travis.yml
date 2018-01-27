@@ -3,12 +3,26 @@ os: linux
 sudo: required
 
 go:
-  - 1.9.x
+  - 1.9
 go_import_path: k8s.io/minikube
 
 install:
-  - echo "Don't run anything."
+  - go get github.com/aktau/github-release
+  - github-release
 script:
-  - make test
+  - make cross
+  - make out/localkube
+  - make checksum
+  - ls -la out
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n minikube-Darwin-x86_64 -R -f out/minikube-darwin-amd64
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n minikube-Darwin-x86_64.sha256 -R -f out/minikube-darwin-amd64.sha256
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n minikube-Linux-x86_64 -R -f out/minikube-linux-amd64
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n minikube-Linux-x86_64.sha256 -R -f out/minikube-linux-amd64.sha256
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n minikube-Windows-x86_64.exe -R -f out/minikube-windows-amd64.exe
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n minikube-Windows-x86_64.exe.sha256 -R -f out/minikube-windows-amd64.exe.sha256
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n localkube -R -f out/localkube
+  - github-release upload -u khs1994-docker -r minikube -t v0.25.0 -n localkube.sha256 -R -f out/localkube.sha256
+branches:
+  only:
+  - 0.25.0
